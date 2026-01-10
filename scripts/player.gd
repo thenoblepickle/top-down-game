@@ -1,7 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
-@export var speed : float = 400
+@export var speed : float = 150
 
 func _physics_process(_delta: float) -> void:
 	var input_vector = Input.get_vector("left", "right", "up", "down")
