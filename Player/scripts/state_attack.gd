@@ -11,6 +11,7 @@ var attacking : bool = false
 
 @onready var idle : State = $"../Idle"
 @onready var walk : State = $"../Walk"
+@onready var hurt_box: HurtBox = $"../../Interactions/HurtBox"
 
 
 ## What happens when the player enters this State?
@@ -24,6 +25,9 @@ func Enter() -> void:
 	audio.play()
 	
 	attacking = true
+	
+	await get_tree().create_timer(0.075).timeout
+	hurt_box.monitoring = true
 	pass
 
 
@@ -31,6 +35,7 @@ func Enter() -> void:
 func Exit() -> void:
 	animation_player.animation_finished.disconnect(EndAttack)
 	attacking = false
+	hurt_box.monitoring = false
 	pass
 
 
